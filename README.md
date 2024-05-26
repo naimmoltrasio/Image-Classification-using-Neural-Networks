@@ -7,7 +7,7 @@
 
 ## People
 
-Naim Moltrasio   ([E-mail](mailto:naim.moltrasio@gmail.com "E-mail")
+Naim Moltrasio [E-mail](mailto:naim.moltrasio@gmail.com "E-mail")
 
 ## Overview
 
