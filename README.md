@@ -1,2 +1,2 @@
 # Image-Classification-using-Neural-Networks
-Basic image classification using tensorflow, keras and neural networks.
+Basic image classification on the MNIST dataset using tensorflow, keras and neural networks.
