@@ -1,47 +1,25 @@
-import matplotlib.pyplot as plt
-import tensorflow as tf
-from tensorflow.keras import layers, models
+from tensorflow.keras.datasets import mnist
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Conv2D, MaxPooling2D, Flatten, Dense
 
-(training_images, training_labels), (test_images, test_labels) = tf.keras.datasets.mnist.load_data()
+(x_train, y_train), (x_test, y_test) = mnist.load_data()
+x_train = x_train.reshape(-1, 28, 28, 1).astype('float32') / 255
+x_test = x_test.reshape(-1, 28, 28, 1).astype('float32') / 255
 
-training_images, test_images = training_images / 255, test_images / 255
+model = Sequential([
+    Conv2D(32, kernel_size=(3, 3), activation='relu', input_shape=(28, 28, 1)),
+    MaxPooling2D(pool_size=(2, 2)),
+    Conv2D(64, kernel_size=(3, 3), activation='relu'),
+    MaxPooling2D(pool_size=(2, 2)),
+    Flatten(),
+    Dense(128, activation='relu'),
+    Dense(10, activation='softmax')
+])
 
+model.compile(optimizer='adam', loss='sparse_categorical_crossentropy', metrics=['accuracy'])
 
-def plot_images(images, labels, num_rows, num_cols):
-    fig, axes = plt.subplots(num_rows, num_cols, figsize=(num_cols * 2, num_rows * 2))
-    axes = axes.flatten()
-    for img, ax, lbl in zip(images, axes, labels):
-        ax.imshow(img, cmap='gray')
-        ax.set_title(f'Label: {lbl}')
-        ax.axis('off')
-    plt.tight_layout()
-    plt.show()
+model.fit(x_train, y_train, epochs=5, validation_data=(x_test, y_test))
 
-
-def model_train(x_train, x_test, y_train, y_test):
-    model = models.Sequential([
-        layers.Flatten(input_shape=(28, 28)),
-        layers.Dense(128, activation='relu'),
-        layers.Dropout(0.2),
-        layers.Dense(10, activation='softmax')
-    ])
-
-    model.compile(optimizer='adam',
-                  loss='sparse_categorical_crossentropy',
-                  metrics=['accuracy'])
-
-    model.fit(x_train, y_train, epochs=5)
-
-    test_loss, test_acc = model.evaluate(x_test, y_test, verbose=2)
-    print(f'Test accuracy: {test_acc}')
-    model.save('image_classifier.keras')
+model.save('mnist_cnn_model.h5')
 
 
-num_images = 20
-t_images = training_images[:num_images]
-t_labels = training_labels[:num_images]
-plot_images(t_images, t_labels, num_rows=4, num_cols=5)
-
-model_train(training_images, test_images, training_labels, test_labels)
-
-model = models.load_model('image_classifier.keras')
