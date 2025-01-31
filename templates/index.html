@@ -8,6 +8,7 @@
             cursor: crosshair;
         }
     </style>
+    <link rel="stylesheet" type="text/css" href="../static/styles.css">
 </head>
 <body>
     <h1>Reconocimiento de Dígitos</h1>
@@ -30,7 +31,7 @@
             if (!drawing) return;
             ctx.lineWidth = 15;
             ctx.lineCap = 'round';
-            ctx.strokeStyle = 'yellow';
+            ctx.strokeStyle = 'red';
 
             ctx.lineTo(event.offsetX, event.offsetY);
             ctx.stroke();
