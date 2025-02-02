@@ -7,7 +7,7 @@
 
 ## People
 
-Naim Moltrasio [E-mail](mailto:naim.moltrasio@gmail.com "E-mail")
+Naim Moltrasio
 
 ## Overview
 
@@ -22,13 +22,14 @@ In this example we use the [MNIST](http://yann.lecun.com/exdb/mnist/) dataset.
 - tensorflow
 - keras
 
-
 You can install missing dependencies with [pip](https://pip.pypa.io/en/stable/ "pip"). And install TensorFlow via [TensorFlow](https://www.tensorflow.org/install/ "TensorFlow") link.
 
 ## Usage
 
 1. Install the dependencies;
 2. Run main.py
+
+![gif](https://github.com/user-attachments/assets/ddeb9642-4a7d-46c9-a8d5-bc130b88ed82)
 
 ## License
 
